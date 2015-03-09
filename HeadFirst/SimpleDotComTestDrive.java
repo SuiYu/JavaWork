@@ -1,4 +1,6 @@
-import java.io.*
+import java.io.*;
+import java.util.*;
+/*
 public class SimpleDotComTestDrive
 {
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class SimpleDotComTestDrive
         String userGuess = "2";
         String result = dot.checkYourself(userGuess);
     }
-}
+}*/
 
 class SimpleDotCom
 {
@@ -40,14 +42,31 @@ class SimpleDotCom
     }
 }
 
-public class GameHelper()
+class GameHelper
 {
-
+    public String getUserInput(String prompt)
+    {
+        String inputLine = null;
+        System.out.println(prompt+"    ");
+        try
+        {
+            BufferedReader is = new BufferedReader(new InputStreamReader(System.in));
+            inputLine = is.readLine();
+            if (inputLine.length() == 0)
+                return null;  
+        } 
+             catch (IOException e)
+              {
+                System.out.println("IOException :" + e);
+             }
+        return inputLine;
+    }
 }
 
-class SimpleDotComGame
+class SimpleDotComTestDrive
 {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+     {
         
     int numOfGuess =0;
     GameHelper helper = new GameHelper();
@@ -64,11 +83,13 @@ class SimpleDotComGame
         String guess = helper.getUserInput("enter a num");
         String result = theDotCom.checkYourself(guess);
         numOfGuess++;
-        if (result.equal("kill")) 
+        if (result.equals("kill")) 
         {
             isAlive = false;
             System.out.println("You took "+numOfGuess+"guesses");   
         }
     }
+    }
 }
-}
+
+
